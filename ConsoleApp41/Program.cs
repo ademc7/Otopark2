@@ -61,6 +61,7 @@ namespace ConsoleApp41
                 else
                 {
                     Console.WriteLine("Araç Bulunamadı!");
+                    Console.WriteLine("adasdsadasdsadsa");
                 }
 
             goto menu;
