@@ -19,7 +19,6 @@ namespace ConsoleApp41
             List<otopark> araclar = new List<otopark>();
             DateTime[] girisayaci = new DateTime[10];
             DateTime zaman = DateTime.Now;
-            int tahmin = 0;
             int aracsayi = 0;
 
             menu:
@@ -28,27 +27,38 @@ namespace ConsoleApp41
             Console.WriteLine("2-Araç Çıkış");
             Console.WriteLine("3-Otopark Araç Plaka Bilgileri");
             string secim = Console.ReadLine();
+            Console.Clear();
 
             if (secim == "1")
             {
-                if (aracsayi >= 10)
+                if (aracsayi == 10)
                 {
                     Console.WriteLine("Otopark Dolu");
                     Console.WriteLine("");
-                    Console.ReadKey();
                     goto menu;
+                    Console.ReadLine();
                 }
 
                 Console.WriteLine("Araç Plakası");
+
                 otopark arac = new otopark();
                 arac.plaka = Console.ReadLine();
+
+                if(araclar.Any(x => x.plaka  == arac.plaka))
+                {
+                    Console.WriteLine("Bu Araba Zaten Var!");
+                    goto menu;
+                }
+
                 arac.giriszamanı = DateTime.Now;
                 araclar.Add(arac);
                 Console.WriteLine("Giriş Yapıldı");
                 Console.WriteLine("Giriş Tarihi= " + DateTime.Now.ToString());
+                aracsayi++;
                 goto menu;
-
-            }else if (secim == "2")
+                Console.Clear();
+            }
+            else if (secim == "2")
             {
                 Console.WriteLine("");
                 Console.WriteLine("Çıkış Yapacak Araç Plakası Giriniz");
@@ -57,17 +67,19 @@ namespace ConsoleApp41
                 {
                     araclar.RemoveAll(x => x.plaka == cikacak);
                     Console.WriteLine("Çıkış Yapıldı= " + DateTime.Now.ToString());
+                    aracsayi--;
                 }
                 else
                 {
                     Console.WriteLine("Araç Bulunamadı!");
                 }
 
-            goto menu;
-            }else if (secim == "3")
+             goto menu;
+                Console.Clear();
+            }
+            else if (secim == "3")
             {
                 Console.WriteLine("Plakalar");
-
                 foreach (otopark arac in araclar)
                 {
                     Console.WriteLine(arac.plaka);
@@ -81,7 +93,6 @@ namespace ConsoleApp41
             }
             goto menu;
             Console.ReadLine();
-           
         }
     }
 }
