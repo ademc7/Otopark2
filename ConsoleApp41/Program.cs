@@ -41,13 +41,11 @@ namespace ConsoleApp41
                 Console.WriteLine("Araç Plakası");
                 otopark arac = new otopark();
                 arac.plaka = Console.ReadLine();
-
                 if(araclar.Any(x => x.plaka  == arac.plaka))
                 {
                     Console.WriteLine("Bu Araç Plakası Zaten Var!");
                     goto menu;
                 }
-
                 arac.giriszamani = DateTime.Now;
                 araclar.Add(arac);
                 Console.WriteLine("Giriş Yapıldı");
@@ -56,6 +54,7 @@ namespace ConsoleApp41
                 goto menu;
                 Console.Clear();
             }
+
             else if (secim == "2")
             {
                 Console.WriteLine("");
@@ -71,25 +70,27 @@ namespace ConsoleApp41
                 {
                     Console.WriteLine("Araç Bulunamadı!");
                 }
-
             goto menu;
-                Console.Clear();
+            Console.Clear();
             }
+
             else if (secim == "3")
             {
                 Console.WriteLine("Plakalar");
-
                 if (aracsayi == 0)
                 {
                     Console.WriteLine("Otopark Boş");
                 }
-
                 foreach (otopark arac in araclar)
                 {
                     Console.WriteLine(arac.plaka + " " + arac.giriszamani);
+                    DateTime saat = DateTime.Now;
+                    System.TimeSpan dakika = (saat - arac.giriszamani);
+                    Console.WriteLine(dakika.Minutes);
                 }
                 goto menu;
             }
+
             else
             {
                 Console.WriteLine("Sayınız 1-3 Arasında Olmalıdır!");
