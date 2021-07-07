@@ -62,9 +62,23 @@ namespace ConsoleApp41
                 string cikacak = Console.ReadLine();
                 if (araclar.Any(x => x.plaka == cikacak))
                 {
+
+                    otopark secilenarac = araclar.Find(x => x.plaka == cikacak);
+                    DateTime saat = DateTime.Now;
+                    System.TimeSpan dakika = (saat - secilenarac.giriszamani);
+                    Console.WriteLine("Durduğu Süre= " + dakika.Minutes);
+                    if(dakika.Minutes ==0 || dakika.Minutes ==1 )
+                    {
+                        Console.WriteLine("1 DK Ücretsizdir!");
+                    }
+                    else if(dakika.Minutes >1)
+                    {
+                        Console.WriteLine("Ödenecek Tutar=" + dakika.Minutes *5 + "TL");
+                    }
+
                     araclar.RemoveAll(x => x.plaka == cikacak);
                     Console.WriteLine("Çıkış Yapıldı= " + DateTime.Now.ToString());
-                    aracsayi--;
+                    aracsayi--;      
                 }
                 else
                 {
@@ -84,9 +98,6 @@ namespace ConsoleApp41
                 foreach (otopark arac in araclar)
                 {
                     Console.WriteLine(arac.plaka + " " + arac.giriszamani);
-                    DateTime saat = DateTime.Now;
-                    System.TimeSpan dakika = (saat - arac.giriszamani);
-                    Console.WriteLine(dakika.Minutes);
                 }
                 goto menu;
             }
