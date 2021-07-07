@@ -12,7 +12,7 @@ namespace ConsoleApp41
         struct otopark
         {
             public string plaka;
-            public DateTime giriszamanı;
+            public DateTime giriszamani;
         }
         static void Main(string[] args)
         {
@@ -50,7 +50,7 @@ namespace ConsoleApp41
                     goto menu;
                 }
 
-                arac.giriszamanı = DateTime.Now;
+                arac.giriszamani = DateTime.Now;
                 araclar.Add(arac);
                 Console.WriteLine("Giriş Yapıldı");
                 Console.WriteLine("Giriş Tarihi= " + DateTime.Now.ToString());
@@ -80,11 +80,12 @@ namespace ConsoleApp41
             else if (secim == "3")
             {
                 Console.WriteLine("Plakalar");
-                foreach (otopark arac in araclar)
+            foreach (otopark arac in araclar)
                 {
-                    Console.WriteLine(arac.plaka);
+                    Console.WriteLine(arac.plaka + " " + arac.giriszamani);
                 }
-                goto menu;
+                
+            goto menu;
             }
 
             else
