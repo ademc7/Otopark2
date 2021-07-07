@@ -38,15 +38,13 @@ namespace ConsoleApp41
                     goto menu;
                     Console.ReadLine();
                 }
-
                 Console.WriteLine("Araç Plakası");
-
                 otopark arac = new otopark();
                 arac.plaka = Console.ReadLine();
 
                 if(araclar.Any(x => x.plaka  == arac.plaka))
                 {
-                    Console.WriteLine("Bu Araba Zaten Var!");
+                    Console.WriteLine("Bu Araç Plakası Zaten Var!");
                     goto menu;
                 }
 
@@ -74,20 +72,24 @@ namespace ConsoleApp41
                     Console.WriteLine("Araç Bulunamadı!");
                 }
 
-             goto menu;
+            goto menu;
                 Console.Clear();
             }
             else if (secim == "3")
             {
                 Console.WriteLine("Plakalar");
-            foreach (otopark arac in araclar)
+
+                if (aracsayi == 0)
+                {
+                    Console.WriteLine("Otopark Boş");
+                }
+
+                foreach (otopark arac in araclar)
                 {
                     Console.WriteLine(arac.plaka + " " + arac.giriszamani);
                 }
-                
-            goto menu;
+                goto menu;
             }
-
             else
             {
                 Console.WriteLine("Sayınız 1-3 Arasında Olmalıdır!");
