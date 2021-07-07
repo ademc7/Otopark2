@@ -40,6 +40,7 @@ namespace ConsoleApp41
                 }
 
                 Console.WriteLine("Araç Plakası");
+
                 otopark arac = new otopark();
                 arac.plaka = Console.ReadLine();
 
